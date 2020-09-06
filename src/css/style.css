@@ -10,6 +10,8 @@
   max-width: 500px;
   width: 100%;
   margin-right: 30px;
+  margin-top: 30px;
+  border-color: transparent;
 }
 
 .login-form-wrap .form-card .card-title {
