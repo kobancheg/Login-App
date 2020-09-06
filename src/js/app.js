@@ -9,8 +9,36 @@ import { notify } from './views/notification';
 import { getNews } from './services/news.servise';
 import { signUp } from './services/signup.service';
 
-const { form, inputEmail, inputPassword, signUpForm } = UI;
+const {
+  form,
+  inputEmail,
+  inputPassword,
+  signUpForm,
+  signUpEmail,
+  signUpPassword,
+  nickName,
+  firstName,
+  lastName,
+  phone,
+  gender,
+  country,
+  city,
+  birthday
+} = UI;
+
 const inputs = [inputEmail, inputPassword];
+const inputsSignUp = [
+  signUpEmail,
+  signUpPassword,
+  nickName,
+  firstName,
+  lastName,
+  phone,
+  gender,
+  country,
+  city,
+  birthday
+];
 
 // Events
 form.addEventListener('submit', e => {
@@ -23,6 +51,7 @@ signUpForm.addEventListener('submit', e => {
   e.preventDefault();
   onSubmitSignUp();
 });
+inputsSignUp.forEach(el => el.addEventListener('focus', () => removeInputError(el)));
 
 // Handlers
 async function onSubmitLogin() {
@@ -49,36 +78,36 @@ async function onSubmitLogin() {
 }
 
 async function onSubmitSignUp() {
-  // const isValidForm = inputs.every(el => {
-  //   const isValidInput = validate(el);
-  //   if (!isValidInput) {
-  //     showInputError(el);
-  //   }
-  //   return isValidInput;
-  // });
+  const isValidForm = inputsSignUp.every(el => {
+    const isValidInput = validate(el);
+    if (!isValidInput) {
+      showInputError(el);
+    }
+    return isValidInput;
+  });
 
-  // if (!isValidForm) return;
-
-  let date = UI.birthday.value.split('-')
-
-  const signUpValue = {
-    email: UI.signUpEmail.value,
-    password: UI.signUpPassword.value,
-    nickname: UI.nickName.value,
-    first_name: UI.firstName.value,
-    last_name: UI.lastName.value,
-    phone: UI.phone.value,
-    gender_orientation: UI.gender.value,
-    city: UI.city.value,
-    country: UI.country.value,
-    date_of_birth_day: +date[2],
-    date_of_birth_month: +date[1],
-    date_of_birth_year: +date[0]
-  }
-
-  console.log(signUpValue)
+  if (!isValidForm) return;
 
   try {
+    let date = UI.birthday.value.split('-')
+
+    const signUpValue = {
+      email: UI.signUpEmail.value,
+      password: UI.signUpPassword.value,
+      nickname: UI.nickName.value,
+      first_name: UI.firstName.value,
+      last_name: UI.lastName.value,
+      phone: UI.phone.value,
+      gender_orientation: UI.gender.value,
+      city: UI.city.value,
+      country: UI.country.value,
+      date_of_birth_day: +date[2],
+      date_of_birth_month: +date[1],
+      date_of_birth_year: +date[0]
+    }
+
+    console.log(signUpValue)
+
     await signUp(signUpValue);
     form.reset();
     // show success notify

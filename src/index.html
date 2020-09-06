@@ -51,13 +51,13 @@
                   <div class="form-group col-md-8">
                     <label for="signUpEmail">Email address</label>
                     <input type="email" class="form-control" id="signUpEmail" aria-describedby="emailHelp"
-                      placeholder="Enter email" data-required="signUpEmail"
+                      placeholder="Enter email" data-required="email"
                       data-invalid-message="Please provide valid email example@example.com" />
                   </div>
                   <div class="form-group col-md-4">
                     <label for="signUpPassword">Password</label>
                     <input type="password" class="form-control" id="signUpPassword" placeholder="Password"
-                      data-required="signUpPassword" />
+                      data-required="password" />
                   </div>
                   <div class="form-group col-md-6">
                     <label for="nickname">Nickname</label>
@@ -89,12 +89,12 @@
                   </div>
                   <div class="form-group col-md-6">
                     <label for="gender">Gender Orientation</label>
-                      <select class="form-control" id="gender">
-                        <option selected disabled value="">Choose...</option>
-                        <option>male</option>
-                        <option>famale</option>
-                        <option>unknown</option>
-                      </select>
+                    <select class="form-control" id="gender" data-required="gender">
+                      <option selected disabled value="">Choose...</option>
+                      <option>male</option>
+                      <option>female</option>
+                      <option>unknown</option>
+                    </select>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="birthday">Birth Day</label>
