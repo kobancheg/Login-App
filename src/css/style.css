@@ -2,9 +2,9 @@
   height: 100vh;
 }
 
-.login-form-wrap {
+/* .login-form-wrap {
   width: 50%;
-}
+} */
 
 .login-form-wrap .form-card {
   max-width: 500px;
@@ -20,7 +20,7 @@
 
 .login-greeting-screen {
   background: var(--teal);
-  width: 50%;
+  /* width: 50%; */
   padding: 20px;
 }
 
