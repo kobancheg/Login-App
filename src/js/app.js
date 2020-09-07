@@ -7,7 +7,7 @@ import { showInputError, removeInputError } from './views/form';
 import { login } from './services/auth.service';
 import { notify } from './views/notification';
 import { getNews } from './services/news.servise';
-import { signUp } from './services/signup.service';
+import { signUp, getCountries } from './services/signup.service';
 
 const {
   form,
@@ -52,6 +52,8 @@ signUpForm.addEventListener('submit', e => {
   onSubmitSignUp();
 });
 inputsSignUp.forEach(el => el.addEventListener('focus', () => removeInputError(el)));
+
+country.addEventListener('focus', el => getCountries());
 
 // Handlers
 async function onSubmitLogin() {
