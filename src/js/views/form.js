@@ -31,3 +31,11 @@ export function removeInputError(el) {
   el.classList.remove('is-invalid');
   parent.removeChild(err);
 }
+
+export function autocomplete(tags, availableTags) {
+  $(function () {
+    $(tags).autocomplete({
+      source: availableTags
+    });
+  });
+}

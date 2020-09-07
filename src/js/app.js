@@ -1,13 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import '../css/style.css';
+import 'webpack-jquery-ui/autocomplete';
+import 'webpack-jquery-ui/css';
 
 import UI from './config/ui.config';
 import { validate } from './helpers/validate';
-import { showInputError, removeInputError } from './views/form';
+import { showInputError, removeInputError, autocomplete } from './views/form';
 import { login } from './services/auth.service';
 import { notify } from './views/notification';
 import { getNews } from './services/news.servise';
-import { signUp, getCountries } from './services/signup.service';
+import { signUp, getCountries, getCities } from './services/signup.service';
 
 const {
   form,
@@ -53,7 +55,19 @@ signUpForm.addEventListener('submit', e => {
 });
 inputsSignUp.forEach(el => el.addEventListener('focus', () => removeInputError(el)));
 
-country.addEventListener('focus', el => getCountries());
+country.addEventListener('focus', async el => {
+  const autocompleteData = await getCountries();
+  let countries = Object.values(autocompleteData);
+  autocomplete(country, countries);
+});
+
+city.addEventListener('focus', async el => {
+  const autocompleteData = await getCountries();
+  let cityIndex = Object.entries(autocompleteData).filter(([, value]) => value === country.value);
+  const index = cityIndex[0][0];
+  const cities = await getCities(index);
+  autocomplete(city, cities);
+});
 
 // Handlers
 async function onSubmitLogin() {
@@ -108,7 +122,7 @@ async function onSubmitSignUp() {
       date_of_birth_year: +date[0]
     }
 
-    console.log(signUpValue)
+    console.log(signUpValue);
 
     await signUp(signUpValue);
     form.reset();
