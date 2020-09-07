@@ -9,119 +9,122 @@
 </head>
 
 <body>
-  <div class="login-page-wrapp d-flex row">
-    <div class="login-form-wrap d-flex col-md-6 col-xs-12">
-      <div class="form-card card ml-auto">
-        <div class="card-body">
+  <div class="container-fluid">
+    <div class="login-page-wrapp d-flex row">
+      <div class="login-form-wrap d-flex col-md-6 col-xs-12">
+        <div class="form-card card ml-auto">
+          <div class="card-body">
 
-          <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                aria-selected="true">Login</a>
-            </li>
-            <li class="nav-item" role="presentation">
-              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-                aria-selected="false">Sign Up</a>
-            </li>
-          </ul>
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                  aria-selected="true">Login</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                  aria-controls="profile" aria-selected="false">Sign Up</a>
+              </li>
+            </ul>
 
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-              <h4 class="card-title mt-3">Please Login</h4>
-              <form name="loginForm">
-                <div class="form-group">
-                  <label for="email">Email address</label>
-                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-                    placeholder="Enter email" data-required="email"
-                    data-invalid-message="Please provide valid email example@example.com" />
-                </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" placeholder="Password"
-                    data-required="password" />
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-            </div>
-
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-              <h4 class="card-title mt-3">Please Sign Up</h4>
-              <form name="signUpForm">
-                <div class="form-row">
-                  <div class="form-group col-md-8">
-                    <label for="signUpEmail">Email address</label>
-                    <input type="email" class="form-control" id="signUpEmail" aria-describedby="emailHelp"
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <h4 class="card-title mt-3">Please Login</h4>
+                <form name="loginForm">
+                  <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
                       placeholder="Enter email" data-required="email"
                       data-invalid-message="Please provide valid email example@example.com" />
                   </div>
-                  <div class="form-group col-md-4">
-                    <label for="signUpPassword">Password</label>
-                    <input type="password" class="form-control" id="signUpPassword" placeholder="Password"
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password"
                       data-required="password" />
                   </div>
-                  <div class="form-group col-md-6">
-                    <label for="nickname">Nickname</label>
-                    <input type="text" class="form-control" id="nickname" placeholder="Nickname"
-                      data-required="nickname" />
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="firstname">First Name</label>
-                    <input type="text" class="form-control" id="firstname" placeholder="First Name"
-                      data-required="firstname" />
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="lastname">Last Name</label>
-                    <input type="text" class="form-control" id="lastname" placeholder="Last Name"
-                      data-required="lastname" />
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="phone">Phone</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="Phone" data-required="phone" />
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="country">Country</label>
-                    <input type="text" class="form-control" id="country" placeholder="Country"
-                      data-required="country" />
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="city">City</label>
-                    <input type="text" class="form-control" id="city" placeholder="City" data-required="city" disabled>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="gender">Gender Orientation</label>
-                    <select class="form-control" id="gender" data-required="gender">
-                      <option selected disabled value="">Choose...</option>
-                      <option>male</option>
-                      <option>female</option>
-                      <option>unknown</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="birthday">Birth Day</label>
-                    <input type="date" class="form-control" id="birthday" data-required="birthday" />
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-            </div>
-          </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
 
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <h4 class="card-title mt-3">Please Sign Up</h4>
+                <form name="signUpForm">
+                  <div class="form-row">
+                    <div class="form-group col-md-8">
+                      <label for="signUpEmail">Email address</label>
+                      <input type="email" class="form-control" id="signUpEmail" aria-describedby="emailHelp"
+                        placeholder="Enter email" data-required="email"
+                        data-invalid-message="Please provide valid email example@example.com" />
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="signUpPassword">Password</label>
+                      <input type="password" class="form-control" id="signUpPassword" placeholder="Password"
+                        data-required="password" />
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="nickname">Nickname</label>
+                      <input type="text" class="form-control" id="nickname" placeholder="Nickname"
+                        data-required="nickname" />
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="firstname">First Name</label>
+                      <input type="text" class="form-control" id="firstname" placeholder="First Name"
+                        data-required="firstname" />
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="lastname">Last Name</label>
+                      <input type="text" class="form-control" id="lastname" placeholder="Last Name"
+                        data-required="lastname" />
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="phone">Phone</label>
+                      <input type="tel" class="form-control" id="phone" placeholder="Phone" data-required="phone" />
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="country">Country</label>
+                      <input type="text" class="form-control" id="country" placeholder="Country"
+                        data-required="country" />
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="city">City</label>
+                      <input type="text" class="form-control" id="city" placeholder="City" data-required="city"
+                        disabled>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="gender">Gender Orientation</label>
+                      <select class="form-control" id="gender" data-required="gender">
+                        <option selected disabled value="">Choose...</option>
+                        <option>male</option>
+                        <option>female</option>
+                        <option>unknown</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="birthday">Birth Day</label>
+                      <input type="date" class="form-control" id="birthday" data-required="birthday" />
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
-    <!-- /.login-form-wrap -->
-    <div class="login-greeting-screen d-flex align-items-center col-md-6 col-xs-12">
-      <div class="login-greeting-screen-text">
-        <h1 class="login-greeting-screen-title">Welcome to my app</h1>
-        <p class="login-greeting-screen-description">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
-          inventore non accusantium earum, illo dolores reprehenderit laborum
-          ratione quos doloribus repellat eligendi deleniti. Ipsum voluptate
-          ipsa exercitationem eaque totam. A.
-        </p>
+      <!-- /.login-form-wrap -->
+      <div class="login-greeting-screen d-flex align-items-center col-md-6 col-xs-12">
+        <div class="login-greeting-screen-text">
+          <h1 class="login-greeting-screen-title">Welcome to my app</h1>
+          <p class="login-greeting-screen-description">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
+            inventore non accusantium earum, illo dolores reprehenderit laborum
+            ratione quos doloribus repellat eligendi deleniti. Ipsum voluptate
+            ipsa exercitationem eaque totam. A.
+          </p>
+        </div>
       </div>
+      <!-- /.login-greeting-screen -->
     </div>
-    <!-- /.login-greeting-screen -->
   </div>
   <!-- /.login-page-wrapp -->
 
