@@ -36,7 +36,7 @@ function getAlertIndex() {
 export function notify({
   msg = 'Info message',
   className = 'alert-info',
-  timeout = '2000',
+  timeout = '3000',
 } = {}) {
   if (!getContainer()) {
     createNotifyContainer();

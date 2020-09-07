@@ -55,8 +55,7 @@ export async function signUp({
       }),
     )
 
-    console.log(response);
-    return response.data;
+    return response;
 
   } catch (err) {
     console.log(err);

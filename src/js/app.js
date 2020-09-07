@@ -5,11 +5,12 @@ import 'webpack-jquery-ui/css';
 
 import UI from './config/ui.config';
 import { validate } from './helpers/validate';
-import { showInputError, removeInputError, autocomplete } from './views/form';
+import { showInputError, removeInputError } from './views/form';
 import { login } from './services/auth.service';
 import { notify } from './views/notification';
 import { getNews } from './services/news.servise';
-import { signUp, getCountries, getCities } from './services/signup.service';
+import { signUp } from './services/signup.service';
+import { autocompleteCountries, autocompleteCities, removeDisabled } from './helpers/autocomplete';
 
 const {
   form,
@@ -55,19 +56,9 @@ signUpForm.addEventListener('submit', e => {
 });
 inputsSignUp.forEach(el => el.addEventListener('focus', () => removeInputError(el)));
 
-country.addEventListener('focus', async el => {
-  const autocompleteData = await getCountries();
-  let countries = Object.values(autocompleteData);
-  autocomplete(country, countries);
-});
-
-city.addEventListener('focus', async el => {
-  const autocompleteData = await getCountries();
-  let cityIndex = Object.entries(autocompleteData).filter(([, value]) => value === country.value);
-  const index = cityIndex[0][0];
-  const cities = await getCities(index);
-  autocomplete(city, cities);
-});
+country.addEventListener('focus', el => autocompleteCountries());
+country.addEventListener('input', el => removeDisabled());
+city.addEventListener('focus', el => autocompleteCities());
 
 // Handlers
 async function onSubmitLogin() {
@@ -122,14 +113,19 @@ async function onSubmitSignUp() {
       date_of_birth_year: +date[0]
     }
 
-    console.log(signUpValue);
-
-    await signUp(signUpValue);
+    const response = await signUp(signUpValue);
+    console.log(response);
     form.reset();
     // show success notify
-    // notify({ msg: 'Login success', className: 'alert-success' })
+    if (response.error) {
+      notify({ msg: `${response.message}`, className: 'alert-warning' })
+    } else {
+      notify({ msg: `${response.message}`, className: 'alert-success' })
+    }
+    
   } catch (err) {
     // show alert notify
-    // notify({ msg: 'Login faild', className: 'alert-danger' })
+    console.log(err.response.data.message);
+    notify({ msg: `${err.response.data.message}`, className: 'alert-danger' })
   }
 }
