@@ -9,8 +9,7 @@ export async function autocompleteCountries() {
 export async function autocompleteCities() {
   if (!country.value) return;
   const autocompleteData = await getCountries();
-  let cityIndex = Object.entries(autocompleteData).filter(([, value]) => value === country.value);
-  const index = cityIndex[0][0];
+  let [[index]] = Object.entries(autocompleteData).filter(([, value]) => value === country.value) || [];
   const cities = await getCities(index);
   autocomplete(city, cities);
 }
@@ -26,7 +25,7 @@ export function removeDisabled() {
 export function autocomplete(tags, availableTags) {
   $(function () {
     $(tags).autocomplete({
-      source: availableTags
+      source: availableTags,
     });
   });
 }

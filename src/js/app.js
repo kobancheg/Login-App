@@ -10,7 +10,11 @@ import { login } from './services/auth.service';
 import { notify } from './views/notification';
 import { getNews } from './services/news.servise';
 import { signUp } from './services/signup.service';
-import { autocompleteCountries, autocompleteCities, removeDisabled } from './helpers/autocomplete';
+import {
+  autocompleteCountries,
+  autocompleteCities,
+  removeDisabled,
+} from './helpers/autocomplete';
 
 const {
   form,
@@ -26,7 +30,7 @@ const {
   gender,
   country,
   city,
-  birthday
+  birthday,
 } = UI;
 
 const inputs = [inputEmail, inputPassword];
@@ -40,29 +44,33 @@ const inputsSignUp = [
   gender,
   country,
   city,
-  birthday
+  birthday,
 ];
 
 // Events
-form.addEventListener('submit', e => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
   onSubmitLogin();
 });
-inputs.forEach(el => el.addEventListener('focus', () => removeInputError(el)));
+inputs.forEach((el) =>
+  el.addEventListener('focus', () => removeInputError(el))
+);
 
-signUpForm.addEventListener('submit', e => {
+signUpForm.addEventListener('submit', (e) => {
   e.preventDefault();
   onSubmitSignUp();
 });
-inputsSignUp.forEach(el => el.addEventListener('focus', () => removeInputError(el)));
+inputsSignUp.forEach((el) =>
+  el.addEventListener('focus', () => removeInputError(el))
+);
 
-country.addEventListener('focus', el => autocompleteCountries());
-country.addEventListener('input', el => removeDisabled());
-city.addEventListener('focus', el => autocompleteCities());
+country.addEventListener('focus', (el) => autocompleteCountries());
+country.addEventListener('input', (el) => removeDisabled());
+city.addEventListener('focus', (el) => autocompleteCities());
 
 // Handlers
 async function onSubmitLogin() {
-  const isValidForm = inputs.every(el => {
+  const isValidForm = inputs.every((el) => {
     const isValidInput = validate(el);
     if (!isValidInput) {
       showInputError(el);
@@ -77,15 +85,15 @@ async function onSubmitLogin() {
     await getNews();
     form.reset();
     // show success notify
-    notify({ msg: 'Login success', className: 'alert-success' })
+    notify({ msg: 'Login success', className: 'alert-success' });
   } catch (err) {
     // show alert notify
-    notify({ msg: 'Login faild', className: 'alert-danger' })
+    notify({ msg: 'Login faild', className: 'alert-danger' });
   }
 }
 
 async function onSubmitSignUp() {
-  const isValidForm = inputsSignUp.every(el => {
+  const isValidForm = inputsSignUp.every((el) => {
     const isValidInput = validate(el);
     if (!isValidInput) {
       showInputError(el);
@@ -96,7 +104,7 @@ async function onSubmitSignUp() {
   if (!isValidForm) return;
 
   try {
-    let date = UI.birthday.value.split('-')
+    const [year, month, day] = UI.birthday.value.split('-');
 
     const signUpValue = {
       email: UI.signUpEmail.value,
@@ -108,24 +116,22 @@ async function onSubmitSignUp() {
       gender_orientation: UI.gender.value,
       city: UI.city.value,
       country: UI.country.value,
-      date_of_birth_day: +date[2],
-      date_of_birth_month: +date[1],
-      date_of_birth_year: +date[0]
-    }
+      date_of_birth_day: Number(day),
+      date_of_birth_month: Number(month),
+      date_of_birth_year: Number(year),
+    };
 
     const response = await signUp(signUpValue);
-    console.log(response);
+
     form.reset();
     // show success notify
     if (response.error) {
-      notify({ msg: `${response.message}`, className: 'alert-warning' })
+      notify({ msg: `${response.message}`, className: 'alert-warning' });
     } else {
-      notify({ msg: `${response.message}`, className: 'alert-success' })
+      notify({ msg: `${response.message}`, className: 'alert-success' });
     }
-    
   } catch (err) {
     // show alert notify
-    console.log(err.response.data.message);
-    notify({ msg: `${err.response.data.message}`, className: 'alert-danger' })
+    notify({ msg: `${err.response.data.message}`, className: 'alert-danger' });
   }
 }
